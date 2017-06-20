@@ -144,6 +144,7 @@ type NodeStatsIndicesStoreResponse struct {
 
 type NodeStatsIndicesIndexingResponse struct {
 	IndexTotal    int64 `json:"index_total"`
+	IndexFailed   int64 `json:"index_failed"`
 	IndexTime     int64 `json:"index_time_in_millis"`
 	IndexCurrent  int64 `json:"index_current"`
 	DeleteTotal   int64 `json:"delete_total"`

@@ -50,6 +50,7 @@ var (
 		"transport_tx_size_bytes_total":              "Total number of bytes sent",
 		"indices_store_throttle_time_seconds_total":  "Throttle time for index store in seconds",
 		"indices_indexing_index_total":               "Total index calls",
+		"indices_indexing_failed_total":              "Total failed index calls",
 		"indices_indexing_index_time_seconds_total":  "Cumulative index time in seconds",
 		"indices_indexing_delete_time_seconds_total": "Total time indexing delete in seconds",
 		"indices_indexing_delete_total":              "Total indexing deletes",
@@ -467,6 +468,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
 		e.counters["indices_indexing_index_time_seconds_total"].WithLabelValues(allStats.ClusterName, stats.Host, stats.Name).Set(float64(stats.Indices.Indexing.IndexTime / 1000))
 		e.counters["indices_indexing_index_total"].WithLabelValues(allStats.ClusterName, stats.Host, stats.Name).Set(float64(stats.Indices.Indexing.IndexTotal))
+		e.counters["indices_indexing_failed_total"].WithLabelValues(allStats.ClusterName, stats.Host, stats.Name).Set(float64(stats.Indices.Indexing.IndexFailed))
 
 		e.counters["indices_indexing_delete_time_seconds_total"].WithLabelValues(allStats.ClusterName, stats.Host, stats.Name).Set(float64(stats.Indices.Indexing.DeleteTime / 1000))
 		e.counters["indices_indexing_delete_total"].WithLabelValues(allStats.ClusterName, stats.Host, stats.Name).Set(float64(stats.Indices.Indexing.DeleteTotal))
